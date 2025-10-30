@@ -1,46 +1,50 @@
-# Discord Bot
+# Discord Bot [中文版](README.zh.md)
 
-一个功能丰富的Discord机器人，提供天气信息和新闻摘要服务。
+A feature-rich Discord bot that provides weather information and news summaries for users.
 
-## 功能特性
+## Features
 
-### 天气信息
-- 获取全球城市天气信息
-- 支持中英文城市名
-- 提供温度、湿度、体感温度等详细信息
+### Weather Information
+- Get weather information for cities worldwide
+- Support for both Chinese and English city names
+- Provides detailed information including temperature, humidity, and feels-like temperature
 
-### 新闻摘要
-- 获取最新新闻头条
-- 支持多种新闻分类（科技、商业、娱乐、体育、健康等）
-- 自动翻译功能，根据用户语言偏好显示相应语言的新闻
+### News Summaries
+- Get the latest news headlines
+- Support for multiple news categories (Technology, Business, Entertainment, Sports, Health, etc.)
+- Automatic translation feature that displays news in the user's preferred language
 
-### 每日摘要
-- 定时发送天气和新闻摘要
-- 支持手动触发摘要命令
+### Daily Summaries
+- Scheduled delivery of weather and news summaries
+- Support for manually triggering summary commands
 
-## 安装与设置
+### Default Location Management
+- Set a default location for weather queries
+- Retrieve weather for your default location with a simple command
 
-### 环境要求
-- Node.js 16.6.0 或更高版本
+## Installation and Setup
+
+### Prerequisites
+- Node.js 16.6.0 or higher
 - Discord Bot Token
 - OpenWeatherMap API Key
 - NewsAPI Key
 
-### 安装步骤
+### Installation Steps
 
-1. 克隆项目仓库：
+1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/shchnk1103/discord-bot.git
    cd discord-bot
    ```
 
-2. 安装依赖：
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-3. 配置环境变量：
-   创建 `.env` 文件并添加以下内容：
+3. Configure environment variables:
+   Create a `.env` file in the project root and add the following:
    ```env
    DISCORD_TOKEN=your_discord_bot_token
    WEATHER_API_KEY=your_openweathermap_api_key
@@ -48,61 +52,126 @@
    CHANNEL_ID=your_discord_channel_id
    ```
 
-4. 启动机器人：
+4. Start the bot:
    ```bash
    npm start
    ```
 
-## 使用方法
+## Usage
 
-### 消息命令
-- `!weather [城市名]` - 获取指定城市的天气信息
-- `!news [分类]` - 获取指定分类的新闻
-- `!summary` - 获取今日天气和新闻摘要
+### Message Commands
+- `!weather [city]` - Get weather information for a specific city
+- `!weather setlocation <city>` - Set your default location
+- `!news [category]` - Get news for a specific category
+- `!summary` - Get today's weather and news summary
 
 ### Slash Commands
-- `/weather [城市名]` - 获取指定城市的天气信息
-- `/news [分类]` - 获取指定分类的新闻
-- `/summary` - 获取今日天气和新闻摘要
+- `/weather [city]` - Get weather information for a specific city
+- `/weather setlocation:<city>` - Set your default location
+- `/news [category]` - Get news for a specific category
+- `/summary` - Get today's weather and news summary
 
-## 项目结构
+## Configuration
+
+### Environment Variables
+- `DISCORD_TOKEN` - Your Discord bot token
+- `WEATHER_API_KEY` - Your OpenWeatherMap API key
+- `NEWS_API_KEY` - Your NewsAPI key
+- `CHANNEL_ID` - The Discord channel ID for scheduled messages
+
+### Command Management
+The bot includes several scripts for managing Discord Slash Commands:
+- `npm run commands:cleanup` - Clean up duplicate commands
+- `npm run commands:cleanup-complete` - Complete command cleanup and re-registration
+- `npm run commands:register` - Register guild-specific commands
+- `npm run commands:update-guild` - Update guild-specific commands
+- `npm run commands:update-global` - Update global commands
+
+## Project Structure
 
 ```
 discord-bot/
-├── index.js                 # 主入口文件
-├── .env                     # 环境变量配置
-├── .gitignore               # Git忽略文件
-├── package.json             # 项目依赖和脚本
+├── index.js                 # Main entry point
+├── .env                     # Environment variables
+├── .gitignore               # Git ignore file
+├── LICENSE                  # MIT License
+├── package.json             # Project dependencies and scripts
 ├── src/
-│   ├── commands/           # 命令处理函数
-│   │   ├── weather.js      # 天气命令处理
-│   │   ├── news.js         # 新闻命令处理
-│   │   └── summary.js      # 摘要命令处理
-│   ├── utils/              # 工具函数
-│   │   ├── api.js          # API调用函数
-│   │   ├── embeds.js       # 嵌入消息创建函数
-│   │   ├── scheduler.js    # 定时任务处理
-│   │   ├── translate.js    # 翻译功能
-│   │   └── errorHandler.js # 错误处理函数
-│   └── tests/              # 测试文件
-└── README.md               # 项目说明文档
+│   ├── commands/           # Command handlers
+│   │   ├── weather.js      # Weather command handler
+│   │   ├── news.js         # News command handler
+│   │   └── summary.js      # Summary command handler
+│   ├── config/             # Configuration files
+│   │   └── commands.js     # Command definitions
+│   ├── models/             # Data models
+│   │   └── UserConfig.js   # User configuration model
+│   ├── scripts/            # Command management scripts
+│   │   ├── cleanup-commands.js
+│   │   ├── complete-cleanup.js
+│   │   ├── register-guild-commands.js
+│   │   ├── update-commands.js
+│   │   └── update-guild-commands.js
+│   ├── utils/              # Utility functions
+│   │   ├── api.js          # API call functions
+│   │   ├── embeds.js       # Embed message creation
+│   │   ├── scheduler.js    # Scheduled task handling
+│   │   ├── translate.js    # Translation functionality
+│   │   └── errorHandler.js # Error handling functions
+│   └── tests/              # Test files
+│       ├── testRunner.js   # Test runner
+│       └── *.test.js       # Individual test files
+└── README.md               # Project documentation
 ```
 
-## 开发
+## Development
 
-### 开发模式
+### Development Mode
 ```bash
 npm run dev
 ```
 
-### 代码规范
-- 使用ESLint进行代码检查
-- 遵循JavaScript Standard Style
+### Testing
+Run all tests:
+```bash
+npm test
+```
 
-## 贡献
+Run specific test suites:
+```bash
+npm run test:weather
+npm run test:news
+npm run test:summary
+npm run test:api
+```
 
-欢迎提交Issue和Pull Request来改进这个项目。
+### Code Style
+- Uses ESLint for code linting
+- Follows JavaScript Standard Style
 
-## 许可证
+## Contributing
 
-MIT
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a new branch for your feature or bug fix
+3. Make your changes
+4. Add or update tests as necessary
+5. Ensure all tests pass
+6. Commit your changes with a clear commit message
+7. Push to your fork
+8. Create a pull request
+
+### Reporting Issues
+If you encounter any issues, please open an issue on GitHub with:
+- A clear description of the problem
+- Steps to reproduce the issue
+- Any relevant error messages
+- Information about your environment
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+If you have any questions or need help with setup, please open an issue on GitHub.
