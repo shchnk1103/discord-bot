@@ -2,6 +2,8 @@
 
 一个功能丰富的Discord机器人，提供天气信息和新闻摘要服务。
 
+支持Docker容器化部署。
+
 ## 功能特性
 
 ### 天气信息
@@ -21,12 +23,13 @@
 ## 安装与设置
 
 ### 环境要求
-- Node.js 16.6.0 或更高版本
+- Node.js 16.6.0 或更高版本（本地部署）
+- Docker和Docker Compose（Docker部署）
 - Discord Bot Token
 - OpenWeatherMap API Key
 - NewsAPI Key
 
-### 安装步骤
+### 本地部署步骤
 
 1. 克隆项目仓库：
    ```bash
@@ -52,6 +55,35 @@
    ```bash
    npm start
    ```
+
+### Docker部署步骤
+
+1. 克隆项目仓库：
+   ```bash
+   git clone <repository-url>
+   cd discord-bot
+   ```
+
+2. 配置环境变量：
+   创建 `.env` 文件并添加以下内容：
+   ```env
+   DISCORD_TOKEN=your_discord_bot_token
+   WEATHER_API_KEY=your_openweathermap_api_key
+   NEWS_API_KEY=your_newsapi_key
+   CHANNEL_ID=your_discord_channel_id
+   ```
+
+3. 构建并启动容器：
+   ```bash
+   docker-compose up -d
+   ```
+
+### Docker部署说明
+
+- 使用 `docker-compose up -d` 在后台启动服务
+- 使用 `docker-compose down` 停止并移除容器
+- 用户配置数据会持久化存储在容器外部
+- 环境变量通过 `.env` 文件传递给容器
 
 ## 使用方法
 
